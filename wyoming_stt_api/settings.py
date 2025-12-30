@@ -7,6 +7,8 @@ class Settings(BaseSettings):
     # https://platform.openai.com/docs/api-reference/audio/createTranscription
     openai_model: str = "gpt-4o-mini-transcribe"
 
+     openai_language: str = "ro"  # <-- ADD
+
     server_host: str = "0.0.0.0"
     server_port: int = 10300
 
