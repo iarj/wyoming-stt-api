@@ -8,9 +8,10 @@ logger = logging.getLogger(__name__)
 
 
 class OpenAIClient:
-    def __init__(self, api_key: str, model: str):
+    def __init__(self, api_key: str, model: str, language: str = "ro"):
         self._client = OpenAI(api_key=api_key)
         self._model = model
+        self._language = language
 
     def speech_to_text(
         self, audio_file: BinaryIO, file_extension: str | None = None
@@ -23,11 +24,12 @@ class OpenAIClient:
             file = (f"dummy.{file_extension}", audio_file)
         else:
             file = audio_file
+
         start_time = time.time()
         result: str = self._client.audio.transcriptions.create(
             model=self._model,
             file=file,
-            language="en",
+            language=self._language,  # <-- ro
             response_format="text",
         )
         logger.info(f"Time taken to transcribe: {time.time() - start_time:.2f}s")
