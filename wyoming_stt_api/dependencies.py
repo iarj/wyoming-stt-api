@@ -13,7 +13,7 @@ logging.basicConfig(
 
 settings = Settings()
 openai_client = OpenAIClient(
-    api_key=settings.openai_api_key, model=settings.openai_model
+    api_key=settings.openai_api_key, model=settings.openai_model, language=settings.openai_language,  # <-- ADD
 )
 server = AsyncTcpServer(settings.server_host, settings.server_port)
 
