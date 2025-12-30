@@ -50,8 +50,7 @@ class WyomingEventHandler(AsyncEventHandler):
             return False
 
         if Transcribe.is_type(event.type):
-            # TODO: this changes the transcription language, but we ignore that
-            #  and always use English.
+            # We transcribe in Romanian only (forced in Settings/OpenAIClient).
             return True
 
         if Describe.is_type(event.type):
@@ -107,7 +106,7 @@ class WyomingEventHandler(AsyncEventHandler):
                                 url="https://platform.openai.com/docs/models",
                             ),
                             installed=True,
-                            languages=["en"],
+                            languages=["ro"],
                         )
                     ],
                 )
